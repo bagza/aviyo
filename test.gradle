@@ -1,0 +1,25 @@
+android {
+    testBuildType "debug"
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    testCompile("uk.co.jemos.podam:podam:$ver.podam") {
+        exclude module: 'jsr250-api'
+    }
+    testCompile "org.mockito:mockito-core:$ver.mockito"
+    testCompile "com.nhaarman:mockito-kotlin:$ver.mockitoKotlin"
+    testCompile "org.hamcrest:hamcrest-library:$ver.hamcrest"
+    testCompile 'junit:junit:4.12'
+
+    testCompile "com.squareup.okhttp3:mockwebserver:$ver.okHttp"
+    testCompile "pl.pragmatists:JUnitParams:$ver.junitParams"
+    testCompile "com.google.dagger:dagger:$ver.dagger"
+    testCompile 'com.github.fabioCollini:DaggerMock:0.7.0'
+    kapt "com.google.dagger:dagger-compiler:$ver.dagger"
+    testCompile "org.codehaus.groovy:groovy:2.4.7:grooid"
+    testCompile("org.spockframework:spock-core:1.0-groovy-2.4")
+}

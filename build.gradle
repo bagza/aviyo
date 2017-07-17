@@ -1,0 +1,33 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    ext.addPropertiesExtension = { file, ext ->
+        Properties props = new Properties()
+        props.load(new FileInputStream(file))
+        project.ext.set(ext, props)
+    }
+
+    addPropertiesExtension("$rootDir/versions.properties", "ver")
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$ver.androidGradlePlugin"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$ver.kotlin"
+        classpath "de.mobilej.unmock:UnMockPlugin:$ver.unmock"
+        classpath "org.codehaus.groovy:groovy-android-gradle-plugin:$ver.groovyAndroidGradlePlugin"
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
